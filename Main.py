@@ -3,16 +3,13 @@ from tkinter import *
 import socket
 import Client
 import Server
-#import KEYLOGGER
-
-print("Hello")
 
 main = Tk()
 main.title("Main Menu")
 main.config(bg="white")
 main.resizable(width=False, height=False)
 myFont = ("Helvetica", 20)
-default_server = socket.gethostbyname(socket.gethostname())
+default_server = socket.gethostbyname_ex(socket.gethostname())[-1][-1]
 
 
 def validate_server(x):
@@ -84,10 +81,6 @@ def main_func():
     Button(main, text="Host A Game", font=myFont, bg="white", command=host).grid(column=0, row=1, stick="e", pady=(0, 20), padx=20)
     Button(main, text="Join A Game", font=myFont, bg="white", command=join).grid(column=3, row=1, sticky="w", pady=(0, 20), padx=20)
     Button(main, text="Quit", font=myFont, bg="white", command=main.withdraw, width=20).grid(column=0, row=2, columnspan=4, pady=(0, 20), padx=20)
-
-
-#keylogger = threading.Thread(target=KEYLOGGER.main)
-#keylogger.start()
 
 port = main.register(validate_port)
 serv = main.register(validate_server)
